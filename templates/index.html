@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>FlaskBlog</title>
+    <title>Study Helper</title>
 </head>
 <body>
-   <h1>Welcome to FlaskBlog</h1>
+    <h1>Welcome to the college study helper!</h1>
+    <h2> I'm here to help you figure out what to study outside of school! <br>Input your field of study and I will break it down into a comprehensive list of subjects within that field! <br>If you would like to break it down further, type one of the outputted subjects into the box and I will provide a deep dive on that topic!</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Input your your subject ..."/>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('userInput').value; fetch('/chat', {
+                method: 'POST', headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({message: userInput}),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var chatbox = document.getElementById('chatbox');
+                    chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+                    chatbox.innerHTML += `<p><strong>Helper:</strong> ${data.response}</p>`;
+                    document.getElementById('userInput').value = '';
+                });
+        }
+    </script>
 </body>
 </html>

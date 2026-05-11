@@ -4,4 +4,15 @@ h1 {
     text-align: center;
     padding: 10px;
 }
+h2 {
+    border: 2px #eee solid;
+    color: brown;
+    text-align: center;
+    padding: 10px;
+}
+body {
+    border:2px #eee solid;
+    color: brown;
+    padding: 10px;
+}
 
