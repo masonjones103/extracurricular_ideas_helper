@@ -15,4 +15,34 @@ body {
     color: brown;
     padding: 10px;
 }
+.alert {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #222;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Completely hidden initially */
+.hidden {
+    display: none;
+}
+
+/* Fade animation */
+.fade {
+    opacity: 0;
+}
+
+.alert img {
+    width: 40px;
+    height: 40px;
+}

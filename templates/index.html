@@ -6,14 +6,38 @@
     <title>Study Helper</title>
 </head>
 <body>
+    <!-- Introduction -->
     <h1>Welcome to the college study helper!</h1>
     <h2> I'm here to help you figure out what to study outside of school! <br>Input your field of study and I will break it down into a comprehensive list of subjects within that field! <br>If you would like to break it down further, type one of the outputted subjects into the box and I will provide a deep dive on that topic!</h2>
+
+    <!-- User input box with placeholder text inside -->
     <div id="chatbox"></div>
-    <input type="text" id="userInput" placeholder="Input your your subject ..."/>
+    <input
+            type="text"
+            id="userInput"
+            placeholder="Input your your subject ..."
+    />
     <button onclick="sendMessage()">Send</button>
 
     <script>
-        function sendMessage() {
+
+        function showAlert(message, imagePath) {    <!-- Shows a fading alert box when GPT response is given -->
+            const alertBox = document.getElementById("alertBox");
+            const alertText = document.getElementById("alertText");
+            const alertIcon = document.getElementById("alertIcon");
+            alertText.innerText = message;
+            alertIcon.src = imagePath;
+            alertBox.classList.remove("hidden");
+            alertBox.classList.remove("fade");
+            setTimeout(() => {  <!-- Alert disappears after 2 seconds -->
+                alertBox.classList.add("fade");
+                setTimeout(() => {
+                    alertBox.classList.add("hidden");
+                }, 500);
+            }, 2500);
+        }
+
+        function sendMessage() {    <!-- Function that takes user input then sends GPT output -->
             var userInput = document.getElementById('userInput').value; fetch('/chat', {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json',
@@ -26,8 +50,14 @@
                     chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
                     chatbox.innerHTML += `<p><strong>Helper:</strong> ${data.response}</p>`;
                     document.getElementById('userInput').value = '';
+                    showAlert("Thinking done!", "/static/images/robot_idea.png"); <!-- Shows alert and image after response is given to alert user -->
                 });
         }
     </script>
+    <div id="alertBox" class="alert hidden">    <!-- Alert box -->
+        <img id="alertIcon" src="/static/images/robot_idea.png" alt="icon"> <!-- Alert box image source -->
+        <span id="alertText"></span>
+    </div>
+
 </body>
 </html>

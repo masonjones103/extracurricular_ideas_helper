@@ -9,13 +9,15 @@ client = OpenAI(
 
 @app.route('/')
 def index():
-	return render_template('index.html') #references the HTML file
+    # references the HTML file
+	return render_template('index.html')
 
 @app.route('/chat', methods=['POST'])
 def chat():
     user_input = request.json.get("message")
 
     response = client.responses.create(
+        #custom GPT that is already prompt engineered
         prompt={
             "id": "pmpt_69ea771f557081978a3655abdcc4f9dd0c41a47a53eecaf4",
             "version": "3"
