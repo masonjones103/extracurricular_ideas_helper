@@ -3,6 +3,7 @@ from openai import OpenAI
 import markdown
 
 app = Flask(__name__)
+# placeholder, need to add api key to virtual environment
 client = OpenAI(
     api_key=""
 )
@@ -17,7 +18,7 @@ def chat():
     user_input = request.json.get("message")
 
     response = client.responses.create(
-        #custom GPT that is already prompt engineered
+        # custom GPT that is already prompt engineered
         prompt={
             "id": "pmpt_69ea771f557081978a3655abdcc4f9dd0c41a47a53eecaf4",
             "version": "3"

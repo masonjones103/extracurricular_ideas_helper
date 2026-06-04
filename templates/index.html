@@ -15,7 +15,7 @@
     <input
             type="text"
             id="userInput"
-            placeholder="Input your your subject ..."
+            placeholder="Input your subject ..."
     />
     <button onclick="sendMessage()">Send</button>
 
@@ -29,7 +29,7 @@
             alertIcon.src = imagePath;
             alertBox.classList.remove("hidden");
             alertBox.classList.remove("fade");
-            setTimeout(() => {  <!-- Alert disappears after 2 seconds -->
+            setTimeout(() => {                      <!-- Alert disappears after 2 seconds -->
                 alertBox.classList.add("fade");
                 setTimeout(() => {
                     alertBox.classList.add("hidden");
@@ -37,7 +37,7 @@
             }, 2500);
         }
 
-        function sendMessage() {    <!-- Function that takes user input then sends GPT output -->
+        function sendMessage() {                    <!-- Function that takes user input then sends GPT output -->
             var userInput = document.getElementById('userInput').value; fetch('/chat', {
                 method: 'POST', headers: {
                     'Content-Type': 'application/json',
